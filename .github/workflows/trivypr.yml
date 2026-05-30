@@ -1,4 +1,4 @@
-name: backend-ci
+name: Trivy but on a PR
 on:
   push:
     branches:
@@ -9,6 +9,9 @@ on:
     types:
       - opened
   workflow_dispatch: # For manual execution
+
+permissions:
+  pull-requests: write
 
 jobs:
   scan-and-comment:
@@ -24,6 +27,7 @@ jobs:
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@v0.36.0
         with:
+          severity: 'CRITICAL,HIGH'
           image-ref: appsecco/dvna:sqlite
           format: "table"
           output: trivy-result.txt
@@ -40,7 +44,7 @@ jobs:
           fi
 
       - name: Comment PR with Trivy scan results
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           path: formatted-trivy-result.md
 
