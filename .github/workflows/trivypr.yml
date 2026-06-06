@@ -19,7 +19,7 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.action == 'opened'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # - name: Build Docker Image
       #   run: docker build --build-arg ENV=prod -t local-image:latest -f ./backend/Dockerfile.ecs ./backend
