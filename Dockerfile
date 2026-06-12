@@ -1,4 +1,4 @@
-FROM node@sha256:c0122351f25f04facee976f9db7214789eabadb489f4e4aea9cd00a0d6af77c4 as build
+FROM node@sha256:f9a1756160a9e1c3dca456bc0b185bf8f2f112a6771c694df87288046f4306f1 as build
 
 RUN node --version
 
